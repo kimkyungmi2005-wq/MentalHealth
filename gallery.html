@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گالری آثار و خلاقیت دانش‌آموزی | حالِ خوب من</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C5CE7; --secondary: #00CEC9; --accent: #FD79A8;
+            --bg: linear-gradient(135deg, #1e1b4b 0%, #311b92 50%, #4a148c 100%);
+            --glass: rgba(20, 15, 45, 0.7); --border: rgba(255, 255, 255, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', sans-serif; }
+        body { background: var(--bg); background-attachment: fixed; min-height: 100vh; color: #fff; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        nav { width: 100%; max-width: 1200px; margin: 10px auto 25px auto; background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 20px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .logo { font-weight: 800; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+        .logo i { color: var(--secondary); }
+        .nav-links { display: flex; list-style: none; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #f1f2f6; font-weight: 500; padding: 8px 12px; border-radius: 12px; transition: 0.3s; font-size: 0.88rem; display: flex; align-items: center; gap: 6px; }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+
+        .container { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 5px; }
+        .glass-box { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 22px; padding: 25px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        h2 { font-size: 1.35rem; margin-bottom: 15px; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: right; }
+        .form-group { text-align: right; margin-bottom: 12px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.88rem; color: var(--secondary); }
+        input, select, textarea { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--border); outline: none; background: rgba(255,255,255,0.92); color: #222; font-size: 0.92rem; }
+        
+        .btn { background: linear-gradient(45deg, var(--primary), var(--accent)); color: white; border: none; padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1rem; width: 100%; transition: 0.3s; margin-top: 10px; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
+        .art-card { background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; text-align: right; }
+        .art-card img { width: 100%; height: 180px; object-fit: cover; }
+        .art-info { padding: 15px; }
+
+        footer { text-align: center; padding: 18px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px solid var(--border); margin-top: 30px; font-size: 0.9rem; color: #ddd; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><i class="fa-solid fa-heart-pulse"></i><span>حالِ خوب من</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> خانه</a></li>
+            <li><a href="counseling.html"><i class="fa-solid fa-ear-listen"></i> گوش شنوا</a></li>
+            <li><a href="gallery.html" style="background: rgba(255,255,255,0.2);"><i class="fa-solid fa-palette"></i> گالری آثار</a></li>
+            <li><a href="mood.html"><i class="fa-solid fa-smile"></i> حالت چطوره؟</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-lightbulb"></i> سازنده</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="glass-box">
+            <h2><i class="fa-solid fa-cloud-arrow-up"></i> ارسال اثر جدید به گالری</h2>
+            <form onsubmit="uploadArt(event)">
+                <div class="form-grid">
+                    <div class="form-group"><label>عنوان اثر:</label><input type="text" id="art-title" required placeholder="مثال: آرامش طبیعت"></div>
+                    <div class="form-group"><label>نام پدیدآورنده:</label><input type="text" id="art-author" required placeholder="نام شما"></div>
+                    <div class="form-group">
+                        <label>نوع اثر / تکنیک:</label>
+                        <select id="art-type">
+                            <option value="نقاشی دستی">🎨 نقاشی دستی (مدادرنگی/سیاه‌قلم)</option>
+                            <option value="تصویر هوش مصنوعی">🤖 تصویر تولیدشده با هوش مصنوعی</option>
+                            <option value="مقاله و نوشته">📝 مقاله روان‌شناختی / داستان</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>فایل تصویر اثر:</label><input type="file" id="art-file" accept="image/*" required></div>
+                </div>
+                <button type="submit" class="btn"><i class="fa-solid fa-upload"></i> ثبت اثر برای بررسی و انتشار</button>
+            </form>
+        </div>
+
+        <div class="glass-box">
+            <h2><i class="fa-solid fa-images"></i> گالری آثار تاییدشده دانش‌آموزان</h2>
+            <div id="gallery-container" class="gallery-grid"></div>
+        </div>
+    </div>
+
+    <footer>
+        طراحی و توسعه‌یافته با 🤍 توسط <strong>پریناز نادری</strong> | ویژه جشنواره سلامت روان
+    </footer>
+
+    <script>
+        function uploadArt(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('art-file');
+            const file = fileInput.files[0];
+            if(!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const arts = JSON.parse(localStorage.getItem('app_arts') || '[]');
+                const newArt = {
+                    id: Date.now(),
+                    title: document.getElementById('art-title').value.trim(),
+                    author: document.getElementById('art-author').value.trim(),
+                    type: document.getElementById('art-type').value,
+                    image: evt.target.result,
+                    status: 'تاییدشده'
+                };
+                arts.unshift(newArt);
+                localStorage.setItem('app_arts', JSON.stringify(arts));
+                alert('✨ اثر شما با موفقیت ثبت شد!');
+                loadGallery();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function loadGallery() {
+            const container = document.getElementById('gallery-container');
+            const arts = JSON.parse(localStorage.getItem('app_arts') || '[]');
+            container.innerHTML = '';
+
+            if(arts.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; opacity:0.8;">هنوز اثری ثبت نشده است. اولین اثر را شما ارسال کنید!</p>';
+                return;
+            }
+
+            arts.forEach(a => {
+                container.innerHTML += `
+                    <div class="art-card">
+                        <img src="${a.image}" alt="${a.title}">
+                        <div class="art-info">
+                            <h3 style="color:var(--secondary); font-size:1.05rem;">${a.title}</h3>
+                            <p style="font-size:0.88rem; margin:5px 0;"><strong>اثری از:</strong> ${a.author}</p>
+                            <span style="font-size:0.8rem; background:rgba(255,255,255,0.15); padding:3px 8px; border-radius:8px;">${a.type}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        window.onload = loadGallery;
+    </script>
+</body>
+</html>
